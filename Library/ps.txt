@@ -1,0 +1,115 @@
+apt install python3.8-venv
+sudo apt install python-is-python3
+pip install virtualenv
+python3 -m venv as_py
+source as_py/bin/activate 
+deactivate 
+pip freeze  > requirements.txt : mention all dependencies in req.txt
+pip install -r requirements.txt
+
+ django-admin startproject discussion_board . : create a django project and give it a name discussion_board
+ manage.py (file is not part of django_project): used to execute various Django commands such as running the local web server or creating a new app
+ __init__.py : indicates that the files in the folder are part of a Python package. Without this file, we cannot import files from another directory which we will be doing a lot of in Django!
+asgi.py : allows for an optional Asynchronous Server Gateway Interface to be run
+settings.py : controls our Django project’s overall settings
+urls.py : tells Django which pages to build in response to a browser or URL request
+wsgi.py : stands for Web Server Gateway Interface which helps Django serve our eventual web pages.
+
+python manage.py runserver : to run a local server
+
+django-admin startapp boards
+admin.py : is a configuration file for the built-in Django Admin app
+apps.py :  is a configuration file for the app itself
+migrations/ : keeps track of any changes to our models.py file so it stays in sync with our database
+models.py : is where we define our database models which Django automatically translates into database tables
+tests.py : is for app-specific tests
+views.py : is where we handle the request/response logic for our web app
+
+
+python manage.py migrate : to create tables for saved models
+python manage.py makemigrations: save models(like commit)
+python manage.py createsuperuser : create admin account
+
+postgsql
+
+CREATE TABLE flights(
+    id SERIAL PRIMARY KEY,
+    origin_id INTEGER REFERENCES location,
+    destination_id INTEGER REFERENCES location ,
+    duration INTEGER NOT NULL
+
+);
+
+
+INSERT INTO flights (origin_id , destination_id, duration) VALUES (1,2,400);
+INSERT INTO flights (origin_id , destination_id, duration) VALUES (1,3,800);
+INSERT INTO flights (origin_id , destination_id, duration) VALUES (2,3,400);
+INSERT INTO flights (origin_id , destination_id, duration) VALUES (3,4,800);
+INSERT INTO flights (origin_id , destination_id, duration) VALUES (4,1,400);
+INSERT INTO flights (origin_id , destination_id, duration) VALUES (2,4,400);
+
+
+
+CREATE TABLE passengers(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    flight_id INTEGER REFERENCES flights
+
+);
+
+INSERT INTO passengers(name,flight_id) VALUES ('AMINE',3);
+INSERT INTO passengers(name,flight_id) VALUES ('ZAKI',1);
+INSERT INTO passengers(name,flight_id) VALUES ('ZINOU',2);
+INSERT INTO passengers(name,flight_id) VALUES ('FOUAD',2);
+INSERT INTO passengers(name,flight_id) VALUES ('OUSSAMA',4);
+INSERT INTO passengers(name,flight_id) VALUES ('HAKIM',3);
+INSERT INTO passengers(name,flight_id) VALUES ('KARIM',3);
+
+
+/*DONE*/
+CREATE TABLE location(
+    id SERIAL PRIMARY KEY,
+    code  VARCHAR NOT NULL,
+    name VARCHAR NOT NULL
+
+);
+INSERT INTO location (code, name) VALUES ('AIRBIS','BISKRA');
+INSERT INTO location (code, name) VALUES ('AIRALG','ALGERIE');
+INSERT INTO location (code, name) VALUES ('AIRORA','ORAN');
+INSERT INTO location (code, name) VALUES ('AIRANN','ANNABA');
+
+
+/*
+database is running (we talk about the server of postgres)
+
+sudo -u postgres psql //to connect to db(postgres) default 
+
+
+sudo -u postgres createuser -P Zinou  // to create a user and give it a password
+sudo -u postgres createdb pycs50 -O Zinou // to create a db and assign it to Zinou
+sudo psql -h 127.0.0.1 -U Zinou pycs50// connect to db pycs50 password=1234
+
+
+sudo -u postgres dropdb zinou// to delete a db called zinou
+sudo -u postgres dropuser // to delete a user
+\du // list of roles (users)
+\list // list of dbs
+
+*/
+
+
+SELECT  flights.id AS "Flight_Number",location.name  AS "Origin" , passengers.name FROM location
+JOIN flights ON location.id=flights.origin_id
+JOIN passengers ON passengers.flight_id=flights.id 
+WHERE flights.id IN (
+    SELECT flight_id FROM passengers GROUP BY flight_id HAVING COUNT(*)>1
+); 
+
+/*
+db.init_app(app) : tide this database with flask application
+app.app_context(): allows to interact with flask_app using command line
+pip freeze  > requirements.txt : mention all dependencies in req.txt
+*/
+
+always use this command to restart apache2 and connect to pgadmin
+sudo /usr/pgadmin4/bin/setup-web.sh

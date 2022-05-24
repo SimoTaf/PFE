@@ -1,0 +1,24 @@
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+http://127.0.0.1:8000/
+
+
+pip install -r requirements.txt
+sudo docker-compose exec web python manage.py makemigrations
+sudo docker-compose exec web python manage.py migrate
+sudo docker-compose exec web python manage.py createsuperuser
+
+docker image ls // list of local  images
+
+sudo docker login --username zc007 --password audi2012@
+
+sudo docker tag 0cf7f3a6bf2d  zc007/libraya:v0
+sudo docker commit  app_web_1 zc007/library:v2
+
+
+sudo docker push zc007/library:v2
+
+This command will stop the services, pulls the latest image and then starts the services.
+docker-compose down && docker-compose build --pull && docker-compose up -d

@@ -1,0 +1,93 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="{% static 'style/img/mdb-favicon.ico' %}" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="{% static 'style/css/mdb.min.css' %}" />
+    <style>
+      #test{
+        margin: 50px;
+        width: 301px;
+        padding: 0px;
+        filter: grayscale();
+        border-radius: 5%;
+      }
+      #test:hover{
+        filter: none;
+      }
+      #drop{
+        background-color: blueviolet;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Start your project here-->
+    <div class=" nav navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+            class="me-2"
+            height="20"
+            alt="MDB Logo"
+            loading="lazy"
+          />
+          <small>MDBootstrap</small>
+        </a>
+      </div>
+    </div>
+    <div class="button" style="margin: auto;
+    width: 15%;
+    
+    padding: 10px;" >
+    <div class="dropdown" >
+      <button id="drop"
+        class="btn btn-primary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-mdb-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+    </div>
+
+    <div class="h-100 d-flex justify-content-center align-items-center">
+      <h3 class="badge bg-primary">Flex item 1</h3>
+      <h3 class="badge bg-primary">Flex item 2</h3>
+      <h3 class="badge bg-primary">Flex item 3</h3>
+    </div>
+
+    <div class="bg-image hover-zoom" id="test" >
+      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/053.webp"  class="w-100" width="300px" style="border-radius: 5%;"/>
+    </div>
+    <!-- End your project here-->
+
+    <!-- MDB -->
+    <script type="text/javascript" src="{% static 'style/js/mdb.min.js' %}"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+  </body>
+</html>

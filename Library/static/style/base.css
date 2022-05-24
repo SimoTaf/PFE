@@ -1,0 +1,83 @@
+body::-webkit-scrollbar {
+    width: 6px;               /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: rgb(216, 216, 216);        /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: rgb(182, 182, 182);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 1px solid rgb(124, 121, 121);  /* creates padding around scroll thumb */
+  }
+  
+    
+      
+      
+      
+      #footer_test{
+        margin: 0px;
+        padding: 0px;
+        
+  
+      }
+      #f_test{
+        min-height: 100vh;
+      }
+       
+      
+      #grid_test{
+        height: 80px;
+        
+      }
+      #book_card{
+        width: auto;
+        height: 350px;
+        filter: grayscale();
+      }
+      #book_card:hover{
+        filter: none;
+  
+      }
+      #book_card2{
+        width: 100%;
+        height: 275px;
+      }
+      
+      #profile_img{
+        height: 250px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+      }
+      #card{
+        width: 30%;
+        border-radius: 15px;
+        margin: auto; 
+        margin-top: 15px; 
+        padding: 0px;  }
+      #book_detail{
+        margin: auto;
+        margin-top: 15px;
+        padding: 0px; 
+        width: 35%;
+        height: 275px;
+      }
+      #sign_in{
+        width: 30%;
+        margin: auto;
+        margin-top: 15px;
+      }
+      #cont{
+        margin: 0px;
+        padding: 15px;
+        border-radius: 10px;
+        background-color:white;
+      }
+      #tab{
+  
+        width: 90%;
+        margin: auto;
+        margin-top: 15px;
+        
+      }
