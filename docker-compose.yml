@@ -3,7 +3,7 @@ version: '3.3'
 services:
   web:
     build: ./Library
-    image: zc007/library:v2
+    image: zc007/library:v3
     command: python manage.py runserver 0.0.0.0:8000  
 
     volumes:
