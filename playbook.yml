@@ -15,5 +15,5 @@
     command: docker commit  pfe_web_1  zc007/library:v3
     
   - name: push image to docker_hub
-    command: docker push zc007/library:v1
+    command: docker push zc007/library:v3
   
