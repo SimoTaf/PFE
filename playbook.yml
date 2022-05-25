@@ -1,0 +1,19 @@
+---
+- name: "Build web_app"
+  hosts: localhost
+  tasks:
+  - name: build the services
+    command: docker-compose build
+
+  - name: run the services
+    command: docker-compose up -d
+
+  - name: connect to docker_hub
+    command: docker login --username zc007 --password audi2012@
+
+  - name: save changes of container to image
+    command: docker commit  pfe_web_1  zc007/library:v3
+    
+  - name: push image to docker_hub
+    command: docker push zc007/library:v1
+  
