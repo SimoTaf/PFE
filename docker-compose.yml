@@ -1,34 +1,21 @@
-version: '3.3'
-
+version: '3'  
 services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: dbname
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
   web:
     build: ./Library
     image: zc007/library:v3
-    command: python manage.py runserver 0.0.0.0:8000  
-
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./Library/:/usr/src/Library/
     ports:
       - 8000:8000
     env_file:
       - ./.env.dev
-    
     depends_on:
       - db
-  db:
-    image: postgres:13.0-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    
-    ports:
-      - 5433:5432
-    
-    environment:
-      - POSTGRES_USER=hello_django
-      - POSTGRES_PASSWORD=hello_django
-      - POSTGRES_DB=hello_django_dev
-
-volumes:
-  postgres_data:
-  
-

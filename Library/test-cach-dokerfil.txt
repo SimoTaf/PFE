@@ -10,23 +10,14 @@ ENV PYTHONUNBUFFERED 1
 
 # install psycopg2 dependencies
 RUN apk update \
-    && apk add mysql-dev gcc python3-dev musl-dev
-
+    && apk add postgresql-dev gcc python3-dev musl-dev
+RUN apt-get update \
+    && apt-get install -y default-libmysqlclient-dev
 # install dependencies
-RUN apk add mysql-client
-RUN apk add -u zlib-dev
+RUN apk add -u zlib-dev 
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-
-# Install mysqladmin
-RUN apk add --no-cache mysql-client
-
-# Copy the entrypoint script
-COPY entrypoint.sh /usr/src/Library/entrypoint.sh
-
-# Set the entrypoint script as the command to run when the container starts
-ENTRYPOINT ["/usr/src/Library/entrypoint.sh"]
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh .
@@ -39,4 +30,6 @@ COPY . .
 
 # run entrypoint.sh
 ENTRYPOINT ["/usr/src/Library/entrypoint.sh"]
+
+
 
